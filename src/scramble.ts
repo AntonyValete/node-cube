@@ -33,14 +33,12 @@ export default class Scramble {
         return this.comment;
     }
 
-    public static fromJson(json: any): Scramble[] {
-        let scrambles: Scramble[] = [];
+    public static fromJson(json: string): Scramble[]{
+        return JSON.parse(json);
+    }
 
-        json.forEach(scramble => {
-            scrambles.push(new Scramble(scramble.date, scramble.scramble, scramble.time, scramble.penalty, scramble.comment));
-        });
-
-        return scrambles;
+    public static toJson(scrambles: Scramble[]): string {
+        return JSON.stringify(scrambles);
     }
 
     public static getMean(scrambles: Scramble[]): number {
