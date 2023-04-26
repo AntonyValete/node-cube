@@ -54,16 +54,16 @@ export default class Scramble {
     }
 
     public static organizeByDate(scrambles: Scramble[]): Map<string, Scramble[]> {
-        let organized: Map<string, Scramble[]> = new Map<string, Scramble[]>();
+        let scramblesOrganizedByDate: Map<string, Scramble[]> = new Map<string, Scramble[]>();
 
         scrambles.forEach(scramble => {
             const date: Date = new Date(scramble.getDate());
             const key: string = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 
-            organized[key].push(scramble);
+            scramblesOrganizedByDate[key].push(scramble);
         });
 
 
-        return organized;
+        return scramblesOrganizedByDate;
     }
 }
