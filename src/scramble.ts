@@ -66,4 +66,16 @@ export default class Scramble {
 
         return scramblesOrganizedByDate;
     }
+
+    public static sortByDate(scrambles: Scramble[]): Scramble[] {
+        return scrambles.sort((a, b) => {
+            return a.getDate() - b.getDate();
+        });
+    }
+
+    public static sortByTime(scrambles: Scramble[]): Scramble[] {
+        return scrambles.sort((a, b) => {
+            return a.getTime() - b.getTime();
+        });
+    }
 }
