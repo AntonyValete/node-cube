@@ -24,13 +24,19 @@ class Scramble {
     public getComment(): string { return this.comment; }
 
     public static fromJson(json: string): Scramble[] {
-        let scrambles: Scramble[] = new Array<Scramble>();
+        let scrambles: Scramble[] = new Array<Scramble>;
 
-        JSON.parse(json).forEach((scramble: Scramble) => {
-            scrambles.push(new Scramble(scramble.date, scramble.scramble, scramble.time, scramble.penalty, scramble.comment));
+        JSON.parse(json).forEach((scramble: any) => {
+            scrambles.push(new Scramble(
+                scramble.date,
+                scramble.scramble,
+                scramble.time,
+                scramble.penalty,
+                scramble.comment
+            ));
         });
-
-        return scrambles; 
+            
+        return scrambles;
     }
 
     public static toJson(scrambles: Scramble[]): string { return JSON.stringify(scrambles); }
