@@ -1,4 +1,4 @@
-export default class Scramble {
+class Scramble {
     private date: number;
     private scramble: string;
     private time: number;
@@ -13,33 +13,27 @@ export default class Scramble {
         this.comment = comment;
     }
 
-    public getDate(): number {
-        return this.date;
+    public getDate(): number { return this.date; }
+
+    public getScramble(): string { return this.scramble; }
+
+    public getTime(): number { return this.time; }
+
+    public getPenalty(): number { return this.penalty; }
+
+    public getComment(): string { return this.comment; }
+
+    public static fromJson(json: string): Scramble[] {
+        let scrambles: Scramble[] = new Array<Scramble>();
+
+        JSON.parse(json).forEach((scramble: Scramble) => {
+            scrambles.push(new Scramble(scramble.date, scramble.scramble, scramble.time, scramble.penalty, scramble.comment));
+        });
+
+        return scrambles; 
     }
 
-    public getScramble(): string {
-        return this.scramble;
-    }
-
-    public getTime(): number {
-        return this.time;
-    }
-
-    public getPenalty(): number {
-        return this.penalty;
-    }
-
-    public getComment(): string {
-        return this.comment;
-    }
-
-    public static fromJson(json: string): Scramble[]{
-        return JSON.parse(json);
-    }
-
-    public static toJson(scrambles: Scramble[]): string {
-        return JSON.stringify(scrambles);
-    }
+    public static toJson(scrambles: Scramble[]): string { return JSON.stringify(scrambles); }
 
     public static getMean(scrambles: Scramble[]): number {
         let sum: number = 0;
@@ -66,14 +60,12 @@ export default class Scramble {
     }
 
     public static sortByDate(scrambles: Scramble[]): Scramble[] {
-        return scrambles.sort((a, b) => {
-            return a.getDate() - b.getDate();
-        });
+        return scrambles.sort((a, b) => { return (a.getDate() - b.getDate()); });
     }
 
     public static sortByTime(scrambles: Scramble[]): Scramble[] {
-        return scrambles.sort((a, b) => {
-            return a.getTime() - b.getTime();
-        });
+        return scrambles.sort((a, b) => { return (a.getTime() - b.getTime()); });
     }
 }
+
+export { Scramble };
