@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
+import main from './index.js'
 
 const app = express();
 
@@ -21,3 +22,5 @@ console.log(_port);
 app.listen(_port, () => {
     console.log(`Listening app on port ${_port}`);
 });
+
+main();
